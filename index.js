@@ -39,9 +39,22 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name,age) {
+  this.stomach = [];
+  this.name = name;
+  this.age = age;
 }
+Person.prototype.eat = function (someFood) {
+  if (this.stomach.length < 10){
+  this.stomach.push(someFood);
+  }
+};
+Person.prototype.poop = function () {
+  this.stomach = [];
+};
+Person.prototype.toString = function () {
+  return `${this.name}, ${this.age}`
+};
 
 /*
   TASK 2
@@ -57,9 +70,19 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 
 }
+Car.prototype.fill = function (gallons) {
+  return this.tank += gallons;
+};
+Car.prototype.drive = function (distance) {
+  return this.odometer += distance, this.tank -= (distance / this.milesPerGallon );
+};
 
 /*
   TASK 3
@@ -76,10 +99,10 @@ function Baby() {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. this is the global object , unless it is in strict mode it is undefined
+  2. this points to the object on which the function is called
+  3. this can be set to point to a certain value using call, apply or bind
+  4. the new keyword constructs a new object, and this points it
 */
 
 
